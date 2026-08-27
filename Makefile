@@ -1,6 +1,6 @@
-SHELL=/bin/bash
+SHELL=/bin/sh
 
-.PHONY: all build build-in-docker purge
+.PHONY: build build-in-docker purge
 
 DEBUG ?= false
 BUILD_COMMIT_SHA ?= $(shell git rev-parse --short HEAD)
@@ -14,11 +14,8 @@ export CLI_NAME ?= $(CLI_NAME)
 export CGO_ENABLED ?= 0
 export GOOS ?= linux
 
-all:
-	@echo "==> Nothing to do"
-
 build:
-	@echo "==> Go build"
+	@echo "Go build"
 	@go version
 	@echo "BUILD_COMMIT_SHA=$(BUILD_COMMIT_SHA)"
 	@echo "CLI_NAME=$(CLI_NAME)"
@@ -27,7 +24,7 @@ build:
 	@go build -trimpath -ldflags "$(GO_LDFLAGS) -X main.debugMode=$(DEBUG) -w -s" -o $(BUILDLOC) .
 
 build-in-docker:
-	@echo "==> Go build in docker"
+	@echo "Go build in docker"
 	@echo "BUILD_COMMIT_SHA=$(BUILD_COMMIT_SHA)"
 	@echo "CLI_NAME=$(CLI_NAME)"
 	@echo "CLI_VERSION=$(CLI_VERSION)"
@@ -35,8 +32,8 @@ build-in-docker:
 	@docker buildx bake build
 
 purge:
-	@echo "==> Purging Go builds"
+	@echo "Purging Go builds"
 	@rm -fv bin/$(CLI_NAME)
 	@rm -fv dist/${CLI_NAME}_*.tar
 	@rm -fv dist/${CLI_NAME}
-	@echo "==> Purged all Go builds"
+	@echo "Purged all Go builds"

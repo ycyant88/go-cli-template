@@ -1,23 +1,19 @@
 # syntax=docker.io/docker/dockerfile:1
 
-FROM public.ecr.aws/dev1-sg/alpine/golang:1.25.0 AS base
+FROM public.ecr.aws/docker/library/golang:1.21.4-alpine3.18 AS base
 
 ARG TARGETARCH
 
 FROM base AS builder
 
+WORKDIR /app
+
+RUN apk add --no-cache git make
+
 COPY . .
 
-RUN apk add --no-cache make && make build
+RUN make build
 
 FROM scratch AS dist
 
-COPY --from=builder /go/bin .
-
-FROM base AS push
-
-WORKDIR /app
-
-COPY  "dist/*_linux_${TARGETARCH}.tar" .
-
-RUN tar -xvf *.tar
+COPY --from=builder /app/bin .

@@ -1,0 +1,21 @@
+{
+	"name": "Dev Containers go-cli",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"mounts": [
+		"source=dev-containers-go-cli-bashhistory,target=/home/vscode/commandhistory"
+	],
+	"remoteUser": "vscode",
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:4.0.0": {},
+                "ghcr.io/devcontainers/features/go:1": {}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"github.copilot-chat",
+			]
+		}
+	}
+}

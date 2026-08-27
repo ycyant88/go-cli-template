@@ -1,6 +1,6 @@
 module go-cli-starter
 
-go 1.24.6
+go 1.21.4
 
 require github.com/spf13/cobra v1.9.1
 
