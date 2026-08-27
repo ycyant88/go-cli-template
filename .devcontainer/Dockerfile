@@ -1,6 +1,6 @@
 # syntax=docker.io/docker/dockerfile:1
 
-FROM mcr.microsoft.com/devcontainers/base:debian
+FROM mcr.microsoft.com/devcontainers/base:ubuntu24.04
 
 RUN mkdir -p /workspaces && chown vscode:vscode /workspaces
 

@@ -6,7 +6,7 @@ DEBUG ?= false
 BUILD_COMMIT_SHA ?= $(shell git rev-parse --short HEAD)
 CLI_NAME ?= go-cli
 CLI_VERSION ?= $(shell git describe --tags --abbrev=0 2>/dev/null || git rev-parse --short HEAD) # tag || commit-hash
-GOURL ?= go-cli-starter
+GOURL ?= go-cli
 BUILDLOC ?= ./bin/$(CLI_NAME)
 GO_LDFLAGS := -X $(GOURL)/cmd.name=$(CLI_NAME) -X $(GOURL)/cmd.version=$(CLI_VERSION)
 
