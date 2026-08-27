@@ -1,1 +1,3 @@
-# go-cli
+# go-cli-starter
+
+Prerequisites: `go` `make`
