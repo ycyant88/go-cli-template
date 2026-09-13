@@ -23,7 +23,7 @@ build:
 	@echo "GO_LDFLAGS=$(GO_LDFLAGS)"
 	@go build -trimpath -ldflags "$(GO_LDFLAGS) -X main.debugMode=$(DEBUG) -w -s" -o $(BUILDLOC) .
 
-build-in-docker:
+release:
 	@echo "Go build in docker"
 	@echo "BUILD_COMMIT_SHA=$(BUILD_COMMIT_SHA)"
 	@echo "CLI_NAME=$(CLI_NAME)"
