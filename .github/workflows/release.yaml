@@ -24,7 +24,12 @@ jobs:
           go-version-file: go.mod
           cache: true
 
-      - run: make release
+      - name: Build release
+        env:
+          CI_COMMIT_SHA: ${{ github.sha }}
+          CI_COMMIT_TAG: ${{ github.ref_name }}
+          CI_PROJECT_URL: ${{ github.server_url }}/${{ github.repository }}
+        run: make release
 
       - name: Create GitHub Release
         env:
